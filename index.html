@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StopWatch</title>
+    <style>
+        body{
+    background-color: grey;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+}
+#stopwatch{
+    width: 30vw;
+    margin: auto;
+    height: 25vh;
+ margin-top:10rem;
+    background-color: black;
+}
+#head{
+    padding-top: 1rem;
+   text-align: center;
+   font-size: 2rem
+}
+#button{
+    text-align: center;
+}
+#button span{
+    margin-right: 2rem;
+    margin-left: 1rem;
+}
+#start{
+    background-color: seagreen;
+    border: .1rem solid white;
+    padding: .3rem;
+    font-size: 1.5rem;
+
+}
+#stop{
+    background-color: red;
+    border: .1rem solid white;
+    padding: .3rem;
+    font-size: 1.5rem;
+}
+#reset{
+    background-color: lightblue;
+    border: .1rem solid white;
+    padding: .3rem;
+    font-size: 1.5rem;
+}
+    </style>
+</head>
+<body>
+    <div id="stopwatch">
+        <p id="head"><span id="hour">00</span>:<span id="mins">00</span>:<span id="sec">00</span></p>
+        <div id="button">
+            <button id="start">Start</button>
+            <button id="stop">Stop</button>
+            <button id="reset">Reset</button>
+        </div>
+    </div>
+   
+
+   <script>
+    let sec=00
+    let mins=00
+    let hour=00
+    let appendsec=document.getElementById("sec")
+    let appendmins=document.getElementById("mins")
+    let appendhour=document.getElementById("hours")
+    let start=document.getElementById("start")
+    let stop=document.getElementById("stop")
+    let reset=document.getElementById("reset")
+    let interval
+    function starttimer(){
+        sec++
+        if(sec<9){
+            appendsec.innerHTML="0"+sec
+        }
+        if(sec>9){
+            appendsec.innerHTML=sec}
+        if(sec>99){
+            mins++
+            appendsec.innerHTML="0"+sec
+            sec=0
+            appendsec.innerHTML="0"+0
+        }
+        if(mins<9){
+            appendmins.innerHTML="0"+mins
+        }
+        if(mins>9){
+            appendmins.innerHTML=mins
+        }
+        if(mins>99){
+            hour++
+            appendmins.innerHTML="0"+hour
+            mins=0
+            appendmins.innerHTML="0"+0
+        }
+        if(hour<9){
+            appendhour.innerHTML="0"+hour
+        }
+        if(hour>9){
+            appendhour.innerHTML=hour
+        }
+    }
+    start.onclick=function(){
+interval=setInterval(starttimer)
+    }
+    stop.onclick=function(){
+        clearInterval(interval)
+    }
+    reset.onclick=function(){
+        clearInterval(interval)
+        sec="00"
+        mins="00"
+        hour="00"
+        appendsec.innerHTML=sec
+        appendmins.innerHTML=mins
+        appendhour.innerHTML=hour
+    }
+   </script>
+</body>
+
+</html>
